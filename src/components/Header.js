@@ -19,7 +19,7 @@ function Header() {
       </Main>
 
       <UserContainer>
-        <Name>Jay P Hayes</Name>
+        <Name>Jay P H....</Name>
         <UserImage>
           <img src="https://i.imgur.com/6VBx3io.png" />
         </UserImage>
