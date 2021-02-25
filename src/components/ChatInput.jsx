@@ -13,6 +13,7 @@ function ChatInput() {
                 {/* <SendIcon  /> */}
             </SendButton>
         </form>
+        
       </InputContainer>
     </Container>
   );

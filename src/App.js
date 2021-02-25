@@ -12,6 +12,24 @@ import { useState } from "react";
 
 function App() {
   const [rooms, setRooms] = useState([])
+  const [chats, setChats] = useState([])
+
+  const getChats = () => {
+    db.collection('chatMessages').onSnapshot((snapshot) => {
+      setChats(
+        snapshot.docs.map((doc) => {
+          return {
+            id: doc.id,
+            name: doc.data().name,
+            imgUrl: doc.data().imgUrl,
+            chatDate: doc.data().chatDate,
+            chatText:doc.data().chatText,
+          }
+        })
+
+      )
+    })
+  }
 
   const getChannels = () => {
     db.collection('rooms').onSnapshot((snapshot) => {
@@ -30,11 +48,17 @@ function App() {
   
   
   useEffect(() => {
-    console.log('HELLO useEffect()')
+    console.log('HELLO useEffect() - Get Channels')
     getChannels()
+  }, [])
+  
+  useEffect(() => {
+    console.log('HELLO useEffect() - Get Chats')
+    getChats()
   }, [])
 
   console.log('XXXX ROOMS', rooms)
+  console.log('XXXX CHATS', chats)
 
 
   return (
@@ -48,7 +72,7 @@ function App() {
             />
             <Switch>
               <Route path="/room">
-                <Chat />
+                <Chat chats={chats} />
               </Route>
 
               <Route path="/">

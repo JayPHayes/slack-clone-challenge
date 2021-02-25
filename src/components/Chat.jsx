@@ -5,7 +5,8 @@ import ChatInput from './ChatInput';
 import ChatMessage from './ChatMessage';
 
 
-function Chat() {
+function Chat({chats}) {
+    
     return (
         <Container>
             <Header>
@@ -28,7 +29,14 @@ function Chat() {
             </Header>
             
             <MessageContainer>
+                {
+                    chats.map((chat) => (
+                        <ChatMessage chat={chat} />
+                    ))
+                }
+                {/* <ChatMessage />
                 <ChatMessage />
+                <ChatMessage /> */}
 
             </MessageContainer>
 
@@ -46,16 +54,15 @@ const Container = styled.div`
 `
 
 const Header = styled.div`
-    padding-left: 20px;
+   padding-left: 20px;
     padding-right: 20px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(83, 39, 83, .13)
+    border-bottom: 1px solid rgba(83, 39, 83,.13);
     justify-content: space-between;
 `
 
 const MessageContainer = styled.div`
-
 `
 
 // const ChatInput = styled.div``
